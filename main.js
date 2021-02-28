@@ -40,8 +40,13 @@ Object.keys(allowedServices).forEach(svc => {
     serviceMenu.interact(`${emoji.get("fire")} start`, "start", {
         joinLastRow: true,
         do: async ctx => {
-            await start(svc)
-            ctx.allowedServices[svc].state = await getState(svc);
+            try {
+                await start(svc)
+                ctx.allowedServices[svc].state = await getState(svc);
+            } catch (e) {
+                console.error(e);
+            }
+
             return true
         }
     })
@@ -49,8 +54,13 @@ Object.keys(allowedServices).forEach(svc => {
     serviceMenu.interact(`${emoji.get("ocean")}${emoji.get("fire")}  restart`, "restart", {
         joinLastRow: true,
         do: async ctx => {
-            await restart(svc)
-            ctx.allowedServices[svc].state = await getState(svc);
+            try {
+                await restart(svc)
+                ctx.allowedServices[svc].state = await getState(svc);
+            } catch (e) {
+                console.error(e);
+            }
+
             return true
         }
     })
@@ -58,8 +68,13 @@ Object.keys(allowedServices).forEach(svc => {
     serviceMenu.interact(`${emoji.get("ocean")} stop`, "stop", {
         joinLastRow: true,
         do: async ctx => {
-            await stop(svc)
-            ctx.allowedServices[svc].state = await getState(svc);
+            try {
+                await stop(svc)
+                ctx.allowedServices[svc].state = await getState(svc);
+            } catch (e) {
+                console.error(e);
+            }
+
             return true
         }
     })
@@ -88,8 +103,12 @@ Object.keys(allowedServices).forEach(svc => {
 
 rootMenu.interact(`${emoji.get("mag_right")} refresh`, "refresh", {
     do: async ctx => {
-        for (let svc of Object.keys(ctx.allowedServices)) {
-            ctx.allowedServices[svc].state = await getState(svc);
+        try {
+            for (let svc of Object.keys(ctx.allowedServices)) {
+                ctx.allowedServices[svc].state = await getState(svc);
+            }
+        } catch (e) {
+            console.error(e);
         }
 
         return true
