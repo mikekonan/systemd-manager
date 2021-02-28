@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "ip": "1.1.5",
+    "linux-systemd": "0.0.1",
+    "node-emoji": "1.10.0",
+    "telegraf": "4.1.1",
+    "telegraf-inline-menu": "6.2.0"
+  }
+}
