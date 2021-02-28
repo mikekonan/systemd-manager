@@ -66,7 +66,12 @@ Object.keys(allowedServices).forEach(svc => {
 
     serviceMenu.interact(`${emoji.get("mag_right")} refresh`, "refresh", {
         do: async ctx => {
-            ctx.allowedServices[svc].state = await getState(svc);
+            try {
+                ctx.allowedServices[svc].state = await getState(svc);
+            } catch (e) {
+                console.error(e);
+            }
+
             return true
         }
     })
